@@ -9,14 +9,10 @@ import play.api.mvc._
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   def index = Action { implicit request =>
-    Ok("Hello")
+    Ok("Hello, this is the index page")
   }
 
   /*  Placeholder functions */
-
-  def test = Action { implicit request =>
-    Ok("Can you hear me?")
-  }
 
   def getRecipe = Action { implicit request =>
     Ok("This is the GET")

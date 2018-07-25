@@ -1,10 +1,7 @@
 #API entry point
 #HTTP methods unique view source identifiers link or controller method
 
-GET        /                       controllers.HomeController.index
-
 GET         /                       controllers.HomeController.index
-GET         /test                   controllers.HomeController.test
 GET         /recipe                 controllers.HomeController.getRecipe
 POST        /recipe                 controllers.HomeController.postRecipe
 DELETE      /recipe                 controllers.HomeController.deleteRecipe
