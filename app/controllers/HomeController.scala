@@ -1,5 +1,7 @@
 package controllers
 
+import awscala._
+import awscala.dynamodbv2._
 import javax.inject.Inject
 import play.api.mvc._
 
@@ -15,6 +17,12 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   /*  Placeholder functions */
 
   def getRecipe = Action { implicit request =>
+    implicit val dynamoDB = DynamoDB.at(Region.Ireland)
+    val table: Table = dynamoDB.table("recipes").get
+    println(table)
+    println("Right here:")
+    println(table.getItem(1))
+
     Ok("This is the GET")
   }
 
