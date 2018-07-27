@@ -19,9 +19,8 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   def getRecipe = Action { implicit request =>
     implicit val dynamoDB = DynamoDB.at(Region.Ireland)
     val table: Table = dynamoDB.table("recipes").get
-    println(table)
-    println("Right here:")
-    println(table.getItem(1))
+    // The .getS gets the String value, there is also getM to get a map, getL to get a list, etc.
+    table.getItem(1).get.attributes.foreach(item => println(item.name + " " + item.value.getS))
 
     Ok("This is the GET")
   }
