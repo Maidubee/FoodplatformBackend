@@ -2,7 +2,8 @@
 #HTTP methods unique view source identifiers link or controller method
 
 GET         /                       controllers.HomeController.index
-GET         /recipe                 controllers.HomeController.getRecipe
+GET         /recipe                 controllers.HomeController.getRecipe(id: Int = -1)
+GET         /recipe/:id             controllers.HomeController.getRecipe(id: Int)
 POST        /recipe                 controllers.HomeController.postRecipe
 DELETE      /recipe                 controllers.HomeController.deleteRecipe
 PUT         /recipe                 controllers.HomeController.putRecipe
