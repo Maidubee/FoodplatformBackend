@@ -49,8 +49,12 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   // The .getS gets the String value, there is also getM to get a map, getL to get a list, etc.
   def getSingleRecipe(id: Int) = {
     val table = getTable("recipes")
+
+    println(table.scan(Seq("recipeID" -> cond.eq(id))).)
+
     Try(table.getItem(id).get) match {
-      case Success(recipe) => recipe.attributes.foreach(item => println(item.name + " " + item.value.getS))
+//      case Success(recipe) => recipe.attributes.foreach(item => println(item.name + " " + item.value.getS))
+      case Success(recipe) => println(recipe.attributes.map(item => item.name + " " + item.value.getS))
       case Failure(_) => println(s"No recipe found with id $id.")
     }
   }
