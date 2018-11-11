@@ -24,6 +24,7 @@ libraryDependencies += "io.gatling" % "gatling-test-framework" % gatlingVersion(
 
 // Added by us
 libraryDependencies += "com.github.seratch" %% "awscala" % "0.7.+"
+libraryDependencies += "com.google.code.gson" % "gson" % "2.8.5"
 
 // The Play project itself
 lazy val root = (project in file("."))

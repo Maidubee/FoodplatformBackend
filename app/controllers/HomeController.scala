@@ -4,6 +4,7 @@ import awscala._
 import awscala.dynamodbv2._
 import javax.inject.Inject
 import play.api.mvc._
+import recipe.Recipe
 
 import scala.util.{Failure, Success, Try}
 
@@ -18,12 +19,17 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   }
 
   def getRecipe(id: Int) = Action { implicit request =>
-    id match{
-      case -1 => getAllRecipes
-      case _ => getSingleRecipe(id)
-    }
+    //id match{
+      //case -1 => getAllRecipes
+      //case _ => getSingleRecipe(id)
+    //}
 
-    Ok("This is the GET")
+   val recipe = new Recipe(1, Map("Almond" -> "30g"), "Pastinaken-Risotto", List("blahhhblahhblahh", "againblaaahblaahh"), 4, "Attila Hildmann" )
+    println(recipe)
+
+    Ok(recipe.toJson)
+
+    //Ok(recipe.toString())
   }
 
 
@@ -50,10 +56,10 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   def getSingleRecipe(id: Int) = {
     val table = getTable("recipes")
 
-    println(table.scan(Seq("recipeID" -> cond.eq(id))).)
+   // println(table.scan(Seq("recipeID" -> cond.eq(id))).)
 
     Try(table.getItem(id).get) match {
-//      case Success(recipe) => recipe.attributes.foreach(item => println(item.name + " " + item.value.getS))
+      case Success(recipe) => recipe.attributes.foreach(item => println(item.name + " " + item.value.getS))
       case Success(recipe) => println(recipe.attributes.map(item => item.name + " " + item.value.getS))
       case Failure(_) => println(s"No recipe found with id $id.")
     }
